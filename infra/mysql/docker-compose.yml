@@ -1,0 +1,17 @@
+version: '2'
+services:
+    user_db:
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: user
+        volumes:
+            -  "./init:/docker-entrypoint-initdb.d"
+
+networks:
+  default:
+    external:
+      name: spring

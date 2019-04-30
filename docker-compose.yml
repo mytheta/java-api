@@ -1,0 +1,19 @@
+version: '2' #docker-composeのバージョンを指定
+services:
+  userapi:
+    build: .
+    volumes:
+    - "./:/usr/local/spring/webapps/userAPI"
+    ports:
+    - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.jdbc.Driver
+      SPRING_DATASOURCE_URL: jdbc:mysql://user_db/user
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_USERNAME: root
+
+
+networks:
+  default:
+    external:
+      name: spring
